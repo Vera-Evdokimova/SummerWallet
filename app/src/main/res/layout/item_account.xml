@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout">
+
+    <data>
+
+        <variable
+            name="account"
+            type="com.pryanya.summerwallet.data.entities.Account" />
+
+        <variable
+            name="clickListener"
+            type="com.pryanya.summerwallet.presentation.accs.accounts.AccountClickListener" />
+
+        <variable
+            name="longClickListener"
+            type="com.pryanya.summerwallet.presentation.accs.accounts.AccountLongClickListener" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:contentPadding="2dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onLongClick="@{() -> longClickListener.onClick(account)}"
+            android:onClick="@{() -> clickListener.onClick(account)}">
+
+            <ImageView
+                android:id="@+id/item_acc_type_image"
+                app:accImage="@{account}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                tools:src="@drawable/ic_menu_gallery"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/item_acc_sum_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="60dp"
+                android:layout_marginBottom="16dp"
+                app:getSumAcc="@{account}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.565"
+                app:layout_constraintStart_toEndOf="@+id/item_acc_type_text"
+                app:layout_constraintTop_toTopOf="@+id/item_acc_type_text"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="100 P" />
+
+            <TextView
+                android:id="@+id/item_acc_type_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                app:accType="@{account}"
+                app:layout_constraintStart_toEndOf="@+id/acc_name"
+                app:layout_constraintTop_toTopOf="@+id/acc_name"
+                tools:text="Cash" />
+
+            <TextView
+                android:id="@+id/acc_name"
+                android:text="@{account.name}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                app:layout_constraintBottom_toBottomOf="@+id/item_acc_type_image"
+                app:layout_constraintStart_toEndOf="@+id/item_acc_type_image"
+                app:layout_constraintTop_toTopOf="@+id/item_acc_type_image"
+                tools:text="My Credit Card" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</layout>

@@ -1,0 +1,45 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.pryanya.summerwallet.presentation.accs.accounts.AccountsViewModel" />
+
+    </data>
+
+    <FrameLayout
+        android:id="@+id/fragment_accounts_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorCards">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fragment_accounts_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_account" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fragment_accounts_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="16dp"
+            android:onClick="@{() -> viewModel.onButtonClick()}"
+            android:src="@drawable/ic_add" />
+
+        <TextView
+            android:id="@+id/fragment_accounts_catcher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:visibility="invisible" />
+
+
+    </FrameLayout>
+</layout>

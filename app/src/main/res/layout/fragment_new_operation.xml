@@ -1,0 +1,71 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.pryanya.summerwallet.presentation.ops.newoperation.NewOperationViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <EditText
+                android:id="@+id/new_op_sum_et"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                android:ems="10"
+                android:hint="@string/sum_hint"
+                android:inputType="numberDecimal"
+                android:text="@={viewModel.sum}" />
+
+            <Spinner
+                android:id="@+id/new_op_cat_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp" />
+
+            <Spinner
+                android:id="@+id/new_op_acc_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="0dp" />
+
+
+            <Spinner
+                android:id="@+id/new_op_to_acc_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                invisibleIf="@{viewModel.type}"
+                android:layout_marginTop="24dp" />
+
+            <Button
+                android:id="@+id/new_op_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> viewModel.onButtonClick()}"
+                android:text="@string/add_button" />
+
+            <DatePicker
+                android:id="@+id/date_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</layout>

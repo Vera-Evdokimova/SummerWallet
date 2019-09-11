@@ -1,0 +1,58 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.pryanya.summerwallet.presentation.accs.editaccount.EditAccountViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <EditText
+                android:id="@+id/edit_acc_name_et"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                android:ems="10"
+                android:hint="@string/new_ac_name_hint"
+                android:inputType="textPersonName"
+                android:text="@={viewModel.name}" />
+
+            <Spinner
+                android:id="@+id/edit_acc_type_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp" />
+
+            <!--<androidx.appcompat.widget.SwitchCompat-->
+                <!--android:id="@+id/edit_acc_switch"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:checked="@={viewModel.countable}"-->
+                <!--android:text="@string/acc_switch_label" />-->
+
+            <Button
+                android:id="@+id/edit_acc_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{()->viewModel.onButtonClick()}"
+                android:text="@string/update_button" />
+
+
+        </LinearLayout>
+    </ScrollView>
+</layout>

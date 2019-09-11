@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout">
+
+    <data>
+
+        <variable
+            name="account"
+            type="com.pryanya.summerwallet.data.entities.Account" />
+
+        <variable
+            name="clickListener"
+            type="com.pryanya.summerwallet.presentation.targs.targets.TargetClickListener" />
+
+        <variable
+            name="longClickListener"
+            type="com.pryanya.summerwallet.presentation.targs.targets.TargetLongClickListener" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:contentPadding="2dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> clickListener.onClick(account)}"
+            android:onLongClick="@{() -> longClickListener.onClick(account)}">
+
+            <ImageView
+                android:id="@+id/item_acc_type_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:accImage="@{account}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_target" />
+
+            <TextView
+                android:id="@+id/item_acc_sum_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="60dp"
+                android:layout_marginBottom="8dp"
+                app:getSumAcc="@{account}"
+                app:layout_constraintBottom_toBottomOf="@+id/target_message_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="100 P" />
+
+            <TextView
+                android:id="@+id/acc_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:text="@{account.name}"
+                app:layout_constraintStart_toEndOf="@+id/item_acc_type_image"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="SomeTarget" />
+
+            <ProgressBar
+                    android:id="@+id/target_progressbar"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toStartOf="@+id/acc_name"
+                    app:layout_constraintTop_toBottomOf="@+id/acc_name"
+                    tools:progress="89"/>
+
+            <TextView
+                android:id="@+id/target_message_daily"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/target_progressbar"
+                app:layout_constraintTop_toBottomOf="@+id/target_progressbar"
+                tools:text="1234" />
+
+            <TextView
+                android:id="@+id/target_message_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toEndOf="@+id/target_message_daily"
+                app:layout_constraintTop_toTopOf="@+id/target_message_daily"
+                tools:text="@string/target_message_daily" />
+
+            <TextView
+                android:id="@+id/target_sum"
+                app:getTargSum="@{account}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/item_acc_sum_text"
+                app:layout_constraintEnd_toEndOf="@+id/item_acc_sum_text"
+                tools:text="5000 P" />
+
+            <TextView
+                android:id="@+id/target_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:formatDateTarg="@{account}"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/target_sum"
+                app:layout_constraintEnd_toEndOf="@+id/target_sum"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="12/12/1221" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</layout>

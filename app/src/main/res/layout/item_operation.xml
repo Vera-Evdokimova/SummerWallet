@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout2">
+
+    <data>
+
+        <variable
+            name="operation"
+            type="com.pryanya.summerwallet.data.entities.Operation" />
+
+        <variable
+            name="clickListener"
+            type="com.pryanya.summerwallet.presentation.ops.history.OperationClickListener" />
+
+        <variable
+            name="longClickListener"
+            type="com.pryanya.summerwallet.presentation.ops.history.OperationLongClickListener" />
+
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:contentPadding="2dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> clickListener.onClick(operation)}"
+            android:onLongClick="@{() -> longClickListener.onClick(operation)}">
+
+            <ImageView
+                android:id="@+id/item_operation_category_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:src="@drawable/ic_other_expense"
+                app:categoryImage="@{operation}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/item_operation_sum_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                app:getSum="@{operation}"
+                app:layout_constraintEnd_toStartOf="@+id/item_operation_date"
+                app:layout_constraintTop_toTopOf="@+id/item_operation_date"
+                tools:text="100,50 P" />
+
+            <TextView
+                android:id="@+id/item_operation_category_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@{operation.category}"
+                app:layout_constraintStart_toEndOf="@+id/item_operation_category_image"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Health" />
+
+            <TextView
+                android:id="@+id/item_operation_account_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:text="@{operation.account}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/item_operation_category_text"
+                app:layout_constraintTop_toBottomOf="@+id/item_operation_category_text"
+                tools:text="Cash" />
+
+            <TextView
+                android:id="@+id/item_operation_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:formatDate="@{operation}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="11/03/2121" />
+
+            <TextView
+                android:id="@+id/to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="96dp"
+                android:text="@{operation.to}"
+                android:textColor="@android:color/primary_text_dark"
+                app:layout_constraintStart_toEndOf="@+id/item_operation_account_text"
+                app:layout_constraintTop_toTopOf="@+id/item_operation_account_text"
+                tools:text="to : CASH" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
